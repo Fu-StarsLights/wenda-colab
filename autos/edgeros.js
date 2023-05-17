@@ -26,7 +26,7 @@
         content = content.join("\n\n")
         add_conversation("user",  Q )
         add_conversation("AI",  content )
-        console.log(content)
+        console.log("----> 这是输出内容:",content)
         copy(content)
     },
 })
