@@ -72,7 +72,18 @@
         app.chat.pop()
         console.log("---->result",result)
 
-        let prompt = "你的身份是 EdgerOS 客服机器人，现在学习以下文段,用中文回答问题。如果无法从中得到答案，返回‘我的知识有限，无法回答这个问题。’\n" +
+        // if(result.length === 0){
+        //     answer = {
+        //         role: "AI",
+        //         content: "对不起我的知识库中没有这个内容无法回答您。",
+        //     }
+        //     app.chat.push(answer)
+        //     return
+        // }
+            
+
+
+        let prompt = "你的身份是 EdgerOS 客服机器人，现在学习以下文段,用中文回答问题。如果无法从中得到答案，或者学习内容为空则返回'我的知识有限。只能 EdgerOS 相关问题'\n学习内容:" +
             result.join('\n') + "\n问题:" + Q
         await send(prompt, keyword = Q, show = true,sources=kownladge)
     }
