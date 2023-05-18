@@ -53,6 +53,7 @@
             url: get_url_form_md(i.title),
             content: i.content
         }))
+        console.log("--------->kownladge",kownladge)
         answer = {
             role: "AI",
             content: "",
@@ -63,13 +64,15 @@
         for (let i in kownladge) {
             answer.content = '正在查找：' + kownladge[i].title
             if (i > 3) continue
-            let prompt = "精炼地总结以下文段中与问题相关的信息为二十个字。\n" +
+            let prompt = "精炼地总结以下文段中与问题相关的信息。\n" +
                 kownladge[i].content + "\n问题：" + Q
             result.push(await send(prompt, keyword = Q, show = false))
         }
         app.chat.pop()
         app.chat.pop()
-        let prompt = "你的身份是 EdgerOS 客服机器人，现在学习以下文段,用中文回答问题。如果无法从中得到答案，则回答我无法回答这些问题。\n" +
+        console.log("---->result",result)
+
+        let prompt = "你的身份是 EdgerOS 客服机器人，现在学习以下文段,用中文回答问题。如果无法从中得到答案，返回‘我的知识有限，无法回答这个问题。’\n" +
             result.join('\n') + "\n问题:" + Q
         await send(prompt, keyword = Q, show = true,sources=kownladge)
     }
